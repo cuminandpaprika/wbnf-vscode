@@ -1,0 +1,42 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "ωBNF",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#strings"
+		},{
+			"include": "#rule"
+		}
+	],
+	"repository": {
+		"comments": {
+			"name": "comment.line.double-slash",
+			"match": "\/\/.*"
+		},
+		"rule": {
+			"name": "keyword.operator.arrow",
+			"match": "->"
+		},
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.control.wbnf",
+				"match": "\\b(if|while|for|return)\\b"
+			}]
+		},
+		"strings": {
+			"name": "string.quoted.double.wbnf",
+			"begin": "\"",
+			"end": "\"",
+			"patterns": [
+				{
+					"name": "constant.character.escape.wbnf",
+					"match": "\\\\."
+				}
+			]
+		}
+	},
+	"scopeName": "source.wbnf"
+}

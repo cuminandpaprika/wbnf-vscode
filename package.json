@@ -1,0 +1,25 @@
+{
+    "name": "wbnf",
+    "displayName": "ωBNF",
+    "description": "Syntax highlighting for the ωBNF language",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.44.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "wbnf",
+            "aliases": ["ωBNF", "wbnf"],
+            "extensions": [".wbnf"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "wbnf",
+            "scopeName": "source.wbnf",
+            "path": "./syntaxes/wbnf.tmLanguage.json"
+        }]
+    }
+}
