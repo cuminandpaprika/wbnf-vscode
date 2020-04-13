@@ -1,0 +1,7 @@
+// SYNTAX TEST "source.wbnf" "wbnf symbol tests"
+
+symbols -> ?+@=:;
+//         ^^^^ keyword.operator.symbol.wbnf
+
+delimiter -> a | b;
+//             ^ keyword.other.choice.wbnf

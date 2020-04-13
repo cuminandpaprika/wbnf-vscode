@@ -1,0 +1,10 @@
+// SYNTAX TEST "source.wbnf" "wbnf regex tests"
+
+STRING_DOUBLE -> "abcdef"
+//               ^^^^^^^^               string.quoted.double.wbnf
+
+STRING_SINGLE -> 'abcdef'
+//               ^^^^^^^^               string.quoted.single.wbnf
+
+STRING_BACKTICK -> `abcdef`
+//                 ^^^^^^^^             string.quoted.backtick.wbnf

@@ -1,0 +1,21 @@
+// SYNTAX TEST "source.wbnf" "wbnf regex tests"
+
+MULTILINE -> /{ //.*$
+            | (?s: /\* (?: [^*] | \*+[^*/] ) \*/ )
+            };
+//          ^               string.regexp.wbnf
+
+SINGLELINE -> /{ //.*$};
+//            ^^^^^^^^^     string.regexp.wbnf
+
+SINGLE -> \a;
+//         ^               string.regexp.wbnf
+
+P_NOTATION -> \pA\Pb;
+//              ^  ^               string.regexp.wbnf
+
+P_NOTATION_CURLY -> \p{A}\P{b};
+//                     ^    ^               string.regexp.wbnf
+
+REGEX_SYMBOL -> .^$;
+//              ^^^               string.regexp.wbnf
