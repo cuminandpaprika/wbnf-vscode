@@ -5,7 +5,7 @@
 * This folder contains all of the files necessary for your extension.
 * `package.json` - this is the manifest file in which you declare your language support and define the location of the grammar file that has been copied into your extension.
 * `syntaxes/wbnf.tmLanguage.json` - this is the Text mate grammar file that is used for tokenization.
-* `language-configuration.json` - this is the language configuration, defining the tokens that are used for comments and brackets.
+* `language-configuration.json` - this is the language configuration, defining the tokens that are used for comments and brackets. It's used for comment toggling etc. More details [here](https://code.visualstudio.com/api/language-extensions/language-configuration-guide)
 
 ## Get up and running straight away
 
@@ -13,6 +13,25 @@
 * Press `F5` to open a new window with your extension loaded.
 * Create a new file with a file name suffix matching your language.
 * Verify that syntax highlighting works and that the language configuration settings are working.
+
+## Test Regex
+
+The textmate grammar fiile uses the [oniguruma](https://github.com/kkos/oniguruma) library which can be tested using [rubular](https://rubular.com/)
+
+## Testing the syntax
+
+[vscode-tmgrammar-test](https://github.com/PanAeon/vscode-tmgrammar-test) is used to test syntax matching. 
+
+### Install
+
+`npm i -g vscode-tmgrammar-test`
+
+### Run tests
+
+From the root of this repo:
+`vscode-tmgrammar-test -c -s source.wbnf -g syntaxes/wbnf.tmLanguage.json -t \"tests/*.wbnf\"`
+
+If you're using vscode, tests can be run using `>Tasks: Run Test Task` from the command palatte `CMD + SHIFT + P`
 
 ## Make changes
 
