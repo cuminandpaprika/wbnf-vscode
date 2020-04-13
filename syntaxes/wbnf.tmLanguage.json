@@ -1,42 +1,156 @@
 {
-	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "ωBNF",
-	"patterns": [
-		{
-			"include": "#keywords"
-		},
-		{
-			"include": "#strings"
-		},{
-			"include": "#rule"
-		}
-	],
-	"repository": {
-		"comments": {
-			"name": "comment.line.double-slash",
-			"match": "\/\/.*"
-		},
-		"rule": {
-			"name": "keyword.operator.arrow",
-			"match": "->"
-		},
-		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.wbnf",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
-		},
-		"strings": {
-			"name": "string.quoted.double.wbnf",
-			"begin": "\"",
-			"end": "\"",
-			"patterns": [
-				{
-					"name": "constant.character.escape.wbnf",
-					"match": "\\\\."
-				}
-			]
-		}
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "scopeName": "source.wbnf",
+  "name": "ωBNF",
+  "patterns": [
+    {
+      "include": "#rule"
+    },
+    {
+      "include": "#comment"
+    }
+  ],
+  "repository": {
+    "comment": {
+      "patterns": [
+        {
+          "include": "#comment-single"
+        },
+        {
+          "include": "#comment-multiline"
+        }
+      ]
+    },
+    "comment-single": {
+      "name": "comment.line.sysl",
+      "match": "[ \t]?//.*$"
+    },
+    "comment-multiline": {
+      "name": "comment.line.sysl",
+      "begin": "\\/\\*",
+      "end": "\\*\\/"
+    },
+    "rule": {
+      "begin": "^[ \t]*(.*)[ \t]*(?=->[ \t])",
+      "beginCaptures": {
+        "0": {
+          "name": "entity.name.variable.rule.name"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "entity.name.type.rule.end"
+        }
+      },
+      "end": ";",
+      "patterns": [
+        {
+          "include": "#comment"
+        },
+        {
+          "include": "#arrow"
+        },
+        {
+          "include": "#choice"
+        },
+        {
+          "include": "#symbol"
+        },
+        {
+          "include": "#strings"
+        },
+        {
+          "include": "#regex"
+        },
+        {
+          "include": "#rule"
+        }
+      ]
+    },
+    "regex": {
+      "name": "string.regexp.wbnf",
+      "patterns": [
+        {
+          "include": "#regex-block"
+        },
+        {
+          "include": "#regex-single"
+        }
+      ]
+    },
+    "regex-block": {
+      "name": "string.regexp.wbnf",
+      "begin": "/{|/{pP}",
+      "end": "}",
+      "patterns": [
+        {
+          "name": "constant.character.escape.wbnf",
+          "match": "\\\\."
+        }
+      ]
+    },
+    "regex-single": {
+      "name": "string.regexp.wbnf",
+      "match": "[\\.\\^\\$]|\\\\p.|\\\\P.|\\\\\\w"
 	},
-	"scopeName": "source.wbnf"
+	"arrow": {
+		"name": "keyword.operator.arrow.wbnf",
+		"match": "->|>"
+	},
+    "choice": {
+      "name": "keyword.other.choice.wbnf",
+      "match": "\\|"
+    },
+    "symbol": {
+      "name": "keyword.operator.symbol.wbnf",
+      "match": "[\\+\\*\\?:@=]"
+    },
+    "strings": {
+      "name": "string.quoted.double.wbnf",
+      "patterns": [
+        {
+          "include": "#string-single"
+        },
+        {
+          "include": "#string-double"
+        },
+        {
+          "include": "#string-backtick"
+        }
+      ]
+    },
+    "string-single": {
+      "name": "string.quoted.single.wbnf",
+      "begin": "'",
+      "end": "'",
+      "patterns": [
+        {
+          "name": "constant.character.escape.wbnf",
+          "match": "\\\\."
+        }
+      ]
+    },
+    "string-double": {
+      "name": "string.quoted.double.wbnf",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.wbnf",
+          "match": "\\\\."
+        }
+      ]
+    },
+    "string-backtick": {
+      "name": "string.quoted.backtick.wbnf",
+      "begin": "`",
+      "end": "`",
+      "patterns": [
+        {
+          "name": "constant.character.escape.wbnf",
+          "match": "\\\\."
+        }
+      ]
+    }
+  }
 }
